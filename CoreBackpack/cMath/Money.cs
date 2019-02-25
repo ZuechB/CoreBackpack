@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoreBackpack.Math
+namespace CoreBackpack.cMath
 {
     public static class MoneyExtender
     {
