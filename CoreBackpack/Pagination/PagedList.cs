@@ -97,7 +97,7 @@ namespace CoreBackpack
             {
                 var x = number - Math.Truncate(number);
                 wholeNum = number - x;
-                if (x >= 0m)
+                if (x > 0m)
                 {
                     wholeNum++;
                 }
