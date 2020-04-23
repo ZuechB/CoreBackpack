@@ -17,25 +17,6 @@ namespace CoreBackpack.Time
     }
     public static class DateTimeExtensions
     {
-        //From http://stackoverflow.com/questions/662379/calculate-date-from-week-number/9064954#9064954
-        public static DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
-        {
-            DateTime jan1 = new DateTime(year, 1, 1);
-            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
-
-            DateTime firstThursday = jan1.AddDays(daysOffset);
-            var cal = CultureInfo.CurrentCulture.Calendar;
-            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-
-            var weekNum = weekOfYear;
-            if (firstWeek <= 1)
-            {
-                weekNum -= 1;
-            }
-            var result = firstThursday.AddDays(weekNum * 7);
-            return result.AddDays(-3);
-        }
-
         public static DateTime GetFirstDayOfWeek(this DateTime dt, DayOfWeek startOfWeek = DayOfWeek.Monday)
         {
             int diff = dt.DayOfWeek - startOfWeek;
@@ -161,11 +142,6 @@ namespace CoreBackpack.Time
         public static DateTimeOffset EndOfDay(this DateTimeOffset input)
         {
             return new DateTimeOffset(input.Date.AddDays(1).AddTicks(-1), input.Offset);
-        }
-
-        public static DateTime UtcToLocal(this DateTimeOffset input, string timeZoneId = "Eastern Standard Time")
-        {
-            return TimeZoneInfo.ConvertTime(input, TimeZoneInfo.FindSystemTimeZoneById(timeZoneId)).DateTime;
         }
 
         public static string GetMonthByName(int month)

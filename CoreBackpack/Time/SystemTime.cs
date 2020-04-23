@@ -2,7 +2,7 @@
 
 namespace CoreBackpack.Time
 {
-    public class SystemTime
+    public static class SystemTime
     {
         public static DateTimeOffset Now
         {
