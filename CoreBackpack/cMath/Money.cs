@@ -16,5 +16,11 @@ namespace CoreBackpack.cMath
             decimal dollar = cents * 0.01m;
             return dollar;
         }
+
+        public static decimal ConvertToDollars(this long cents)
+        {
+            decimal dollar = cents * 0.01m;
+            return dollar;
+        }
     }
 }
