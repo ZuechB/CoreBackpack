@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace CoreBackpack.Time
@@ -148,5 +149,62 @@ namespace CoreBackpack.Time
         {
             return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
         }
+
+        public static List<DateTimeFrame> GetWeeks(DateTime Start, DateTime End)
+        {
+            var weeks = new List<DateTimeFrame>();
+            int days = 7;
+
+            DateTime startDate = Start;
+            while (true)
+            {
+                var newDate = Start.AddDays(days);
+                if (newDate >= End)
+                {
+                    if (weeks.Count() > 0)
+                    {
+                        var daysLeft = -(weeks.Last().EndDate - End).Days;
+                        if (daysLeft > 0)
+                        {
+                            var LastDate = weeks.Last().EndDate.AddDays(daysLeft);
+                            weeks.Add(new DateTimeFrame()
+                            {
+                                StartDate = startDate,
+                                EndDate = LastDate
+                            });
+                        }
+                    }
+                    else
+                    {
+                        weeks.Add(new DateTimeFrame()
+                        {
+                            StartDate = Start,
+                            EndDate = End
+                        });
+                    }
+
+                    break;
+                }
+                weeks.Add(new DateTimeFrame()
+                {
+                    StartDate = startDate,
+                    EndDate = newDate
+                });
+                startDate = newDate;
+                days += 7;
+            }
+            return weeks;
+        }
+
+        //public static List<DateTimeFrame> GetMonths(DateTime Start, DateTime End)
+        //{
+        //    var months = new List<DateTimeFrame>();
+        //}
+    }
+
+    public class DateTimeFrame
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace CoreBackpack.Time
         {
             get
             {
-                return DateTimeOffset.UtcNow.LocalDateTime;
+                return DateTimeOffset.UtcNow;
             }
         }
     }
