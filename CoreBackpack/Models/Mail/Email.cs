@@ -1,7 +1,7 @@
 ﻿using SendGrid.Helpers.Mail;
 using System.Collections.Generic;
 
-namespace CoreBackpack.Models
+namespace CoreBackpack.Models.Mail
 {
     public class Email
     {

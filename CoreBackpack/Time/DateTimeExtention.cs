@@ -150,6 +150,37 @@ namespace CoreBackpack.Time
             return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
         }
 
+        public static List<MonthFrame> GetMonthsFromToday(int months, bool includeThisMonth = true)
+        {
+            var monthFrames = new List<MonthFrame>();
+
+            if (includeThisMonth)
+            {
+                monthFrames.Add(new MonthFrame()
+                {
+                    MonthNumber = SystemTime.Now.Month,
+                    Name = GetMonthByName(SystemTime.Now.Month),
+                    StartDate = SystemTime.Now.StartOfMonth(),
+                    EndDate = SystemTime.Now.EndOfMonth()
+                });
+            }
+
+            for (int i = 0; i < months; i++)
+            {
+                var month = SystemTime.Now.AddMonths(-(i + 1));
+
+                monthFrames.Add(new MonthFrame()
+                {
+                    MonthNumber = month.Month,
+                    Name = GetMonthByName(month.Month),
+                    StartDate = month.StartOfMonth(),
+                    EndDate = month.EndOfMonth()
+                });
+            }
+
+            return monthFrames.OrderByDescending(d => d.MonthNumber).ToList();
+        }
+
         public static List<DateTimeFrame> GetWeeks(DateTime Start, DateTime End)
         {
             var weeks = new List<DateTimeFrame>();
@@ -169,8 +200,8 @@ namespace CoreBackpack.Time
                             var LastDate = weeks.Last().EndDate.AddDays(daysLeft);
                             weeks.Add(new DateTimeFrame()
                             {
-                                StartDate = startDate,
-                                EndDate = LastDate
+                                StartDate = startDate.StartOfDay(),
+                                EndDate = LastDate.EndOfDay()
                             });
                         }
                     }
@@ -178,8 +209,8 @@ namespace CoreBackpack.Time
                     {
                         weeks.Add(new DateTimeFrame()
                         {
-                            StartDate = Start,
-                            EndDate = End
+                            StartDate = Start.StartOfDay(),
+                            EndDate = End.EndOfDay()
                         });
                     }
 
@@ -187,8 +218,8 @@ namespace CoreBackpack.Time
                 }
                 weeks.Add(new DateTimeFrame()
                 {
-                    StartDate = startDate,
-                    EndDate = newDate
+                    StartDate = startDate.StartOfDay(),
+                    EndDate = newDate.EndOfDay()
                 });
                 startDate = newDate;
                 days += 7;
@@ -200,6 +231,15 @@ namespace CoreBackpack.Time
         //{
         //    var months = new List<DateTimeFrame>();
         //}
+    }
+
+    public class MonthFrame
+    {
+        public int MonthNumber { get; set; }
+        public string Name { get; set; }
+
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
     }
 
     public class DateTimeFrame
