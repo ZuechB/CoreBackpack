@@ -178,7 +178,7 @@ namespace CoreBackpack.Time
                 });
             }
 
-            return monthFrames.OrderByDescending(d => d.MonthNumber).ToList();
+            return monthFrames.ToList();
         }
 
         public static List<DateTimeFrame> GetWeeks(DateTime Start, DateTime End)

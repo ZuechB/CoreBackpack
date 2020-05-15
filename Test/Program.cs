@@ -14,10 +14,10 @@ namespace Test
             //    Console.WriteLine(week.StartDate.ToString() + " - " + week.EndDate.ToString());
             //}
 
-            var months = DateTimeExtensions.GetMonthsFromToday(3);
+            var months = DateTimeExtensions.GetMonthsFromToday(6);
             foreach (var month in months)
             {
-                Console.WriteLine(month.Name + " - " + month.MonthNumber.ToString());
+                Console.WriteLine(month.Name + " - " + month.MonthNumber.ToString() + " - " + month.StartDate.Year);
             }
 
         }
