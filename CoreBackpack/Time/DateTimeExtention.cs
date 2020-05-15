@@ -178,6 +178,8 @@ namespace CoreBackpack.Time
                 });
             }
 
+            monthFrames.Reverse();
+
             return monthFrames.ToList();
         }
 
