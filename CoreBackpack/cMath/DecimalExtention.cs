@@ -24,6 +24,11 @@ namespace CoreBackpack.cMath
             return Math.Round((percent / 100) * amount, 2, MidpointRounding.AwayFromZero);
         }
 
+        public static decimal Percent(decimal count, decimal totalcount)
+        {
+            return (decimal)(count / totalcount) * 100;
+        }
+
         public static decimal Percent(int count, int totalcount)
         {
             return (decimal)((decimal)count / (decimal)totalcount) * 100;

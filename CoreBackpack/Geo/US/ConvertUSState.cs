@@ -10,7 +10,7 @@ namespace CoreBackpack.Geo.US
             var states = new List<USState>();
 
             text = text.ToUpper();
-            if (text.Contains("ALABAMA") || text.Contains("AL"))
+            if (text == "ALABAMA" || text == "AL")
             {
                 states.Add(new USState()
                 {
@@ -19,7 +19,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("ALASKA") || text.Contains("AK"))
+            if (text == "ALASKA" || text == "AK")
             {
                 states.Add(new USState()
                 {
@@ -28,7 +28,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("AMERICAN SAMOA") || text.Contains("AS"))
+            if (text == "AMERICAN SAMOA" || text == "AS")
             {
                 states.Add(new USState()
                 {
@@ -37,7 +37,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("ARIZONA") || text.Contains("AZ"))
+            if (text == "ARIZONA" || text == "AZ")
             {
                 states.Add(new USState()
                 {
@@ -46,7 +46,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("ARKANSAS") || text.Contains("AR"))
+            if (text == "ARKANSAS" || text == "AR")
             {
                 states.Add(new USState()
                 {
@@ -55,7 +55,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("CALIFORNIA") || text.Contains("CA"))
+            if (text == "CALIFORNIA" || text == "CA")
             {
                 states.Add(new USState()
                 {
@@ -64,7 +64,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("COLORADO") || text.Contains("CO"))
+            if (text == "COLORADO" || text == "CO")
             {
                 states.Add(new USState()
                 {
@@ -73,7 +73,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("CONNECTICUT") || text.Contains("CT"))
+            if (text == "CONNECTICUT" || text == "CT")
             {
                 states.Add(new USState()
                 {
@@ -82,7 +82,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("DELAWARE") || text.Contains("DE"))
+            if (text == "DELAWARE" || text == "DE")
             {
                 states.Add(new USState()
                 {
@@ -91,7 +91,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("DISTRICT OF COLUMBIA") || text.Contains("DC"))
+            if (text == "DISTRICT OF COLUMBIA" || text == "DC")
             {
                 states.Add(new USState()
                 {
@@ -100,7 +100,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("FEDERATED STATES OF MICRONESIA") || text.Contains("FM"))
+            if (text == "FEDERATED STATES OF MICRONESIA" || text == "FM")
             {
                 states.Add(new USState()
                 {
@@ -109,7 +109,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("FLORIDA") || text.Contains("FL"))
+            if (text == "FLORIDA" || text == "FL")
             {
                 states.Add(new USState()
                 {
@@ -118,7 +118,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("GEORGIA") || text.Contains("GA"))
+            if (text == "GEORGIA" || text == "GA")
             {
                 states.Add(new USState()
                 {
@@ -127,7 +127,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("GUAM") || text.Contains("GU"))
+            if (text == "GUAM" || text == "GU")
             {
                 states.Add(new USState()
                 {
@@ -136,7 +136,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("HAWAII") || text.Contains("HI"))
+            if (text == "HAWAII" || text == "HI")
             {
                 states.Add(new USState()
                 {
@@ -145,7 +145,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("IDAHO") || text.Contains("ID"))
+            if (text == "IDAHO" || text == "ID")
             {
                 states.Add(new USState()
                 {
@@ -154,7 +154,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("ILLINOIS") || text.Contains("IL"))
+            if (text == "ILLINOIS" || text == "IL")
             {
                 states.Add(new USState()
                 {
@@ -163,7 +163,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("INDIANA") || text.Contains("IN"))
+            if (text == "INDIANA" || text == "IN")
             {
                 states.Add(new USState()
                 {
@@ -172,7 +172,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("IOWA") || text.Contains("IA"))
+            if (text == "IOWA" || text == "IA")
             {
                 states.Add(new USState()
                 {
@@ -181,7 +181,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("KANSAS") || text.Contains("KS"))
+            if (text == "KANSAS" || text == "KS")
             {
                 states.Add(new USState()
                 {
@@ -190,7 +190,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("KENTUCKY") || text.Contains("KY"))
+            if (text == "KENTUCKY" || text == "KY")
             {
                 states.Add(new USState()
                 {
@@ -199,7 +199,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("LOUISIANA") || text.Contains("LA"))
+            if (text == "LOUISIANA" || text == "LA")
             {
                 states.Add(new USState()
                 {
@@ -208,7 +208,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MAINE") || text.Contains("ME"))
+            if (text == "MAINE" || text == "ME")
             {
                 states.Add(new USState()
                 {
@@ -217,7 +217,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MARSHALL ISLANDS") || text.Contains("MH"))
+            if (text == "MARSHALL ISLANDS" || text == "MH")
             {
                 states.Add(new USState()
                 {
@@ -226,7 +226,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MARYLAND") || text.Contains("MD"))
+            if (text == "MARYLAND" || text == "MD")
             {
                 states.Add(new USState()
                 {
@@ -235,7 +235,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MASSACHUSETTS") || text.Contains("MA"))
+            if (text == "MASSACHUSETTS" || text == "MA")
             {
                 states.Add(new USState()
                 {
@@ -244,7 +244,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MICHIGAN") || text.Contains("MI"))
+            if (text == "MICHIGAN" || text == "MI")
             {
                 states.Add(new USState()
                 {
@@ -253,7 +253,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MINNESOTA") || text.Contains("MN"))
+            if (text == "MINNESOTA" || text == "MN")
             {
                 states.Add(new USState()
                 {
@@ -262,7 +262,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MISSISSIPPI") || text.Contains("MS"))
+            if (text == "MISSISSIPPI" || text == "MS")
             {
                 states.Add(new USState()
                 {
@@ -271,7 +271,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MISSOURI") || text.Contains("MO"))
+            if (text == "MISSOURI" || text == "MO")
             {
                 states.Add(new USState()
                 {
@@ -280,7 +280,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("MONTANA") || text.Contains("MT"))
+            if (text == "MONTANA" || text == "MT")
             {
                 states.Add(new USState()
                 {
@@ -289,7 +289,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NEBRASKA") || text.Contains("NE"))
+            if (text == "NEBRASKA" || text == "NE")
             {
                 states.Add(new USState()
                 {
@@ -298,7 +298,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NEVADA") || text.Contains("NV"))
+            if (text == "NEVADA" || text == "NV")
             {
                 states.Add(new USState()
                 {
@@ -307,7 +307,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NEW HAMPSHIRE") || text.Contains("NH"))
+            if (text == "NEW HAMPSHIRE" || text == "NH")
             {
                 states.Add(new USState()
                 {
@@ -316,7 +316,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NEW JERSEY") || text.Contains("NJ"))
+            if (text == "NEW JERSEY" || text == "NJ")
             {
                 states.Add(new USState()
                 {
@@ -325,7 +325,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NEW MEXICO") || text.Contains("NM"))
+            if (text == "NEW MEXICO" || text == "NM")
             {
                 states.Add(new USState()
                 {
@@ -334,7 +334,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NEW YORK") || text.Contains("NY"))
+            if (text == "NEW YORK" || text == "NY")
             {
                 states.Add(new USState()
                 {
@@ -343,7 +343,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NORTH CAROLINA") || text.Contains("NC"))
+            if (text == "NORTH CAROLINA" || text == "NC")
             {
                 states.Add(new USState()
                 {
@@ -352,7 +352,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NORTH DAKOTA") || text.Contains("ND"))
+            if (text == "NORTH DAKOTA" || text == "ND")
             {
                 states.Add(new USState()
                 {
@@ -361,7 +361,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("NORTHERN MARIANA ISLANDS") || text.Contains("MP"))
+            if (text == "NORTHERN MARIANA ISLANDS" || text == "MP")
             {
                 states.Add(new USState()
                 {
@@ -370,7 +370,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("OHIO") || text.Contains("OH"))
+            if (text == "OHIO" || text == "OH")
             {
                 states.Add(new USState()
                 {
@@ -379,7 +379,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("OKLAHOMA") || text.Contains("OK"))
+            if (text == "OKLAHOMA" || text == "OK")
             {
                 states.Add(new USState()
                 {
@@ -388,7 +388,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("OREGON") || text.Contains("OR"))
+            if (text == "OREGON" || text == "OR")
             {
                 states.Add(new USState()
                 {
@@ -397,7 +397,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("PALAU") || text.Contains("PW"))
+            if (text == "PALAU" || text == "PW")
             {
                 states.Add(new USState()
                 {
@@ -406,7 +406,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("PENNSYLVANIA") || text.Contains("PA"))
+            if (text == "PENNSYLVANIA" || text == "PA")
             {
                 states.Add(new USState()
                 {
@@ -415,7 +415,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("PUERTO RICO") || text.Contains("PR"))
+            if (text == "PUERTO RICO" || text == "PR")
             {
                 states.Add(new USState()
                 {
@@ -424,7 +424,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("RHODE ISLAND") || text.Contains("RI"))
+            if (text == "RHODE ISLAND" || text == "RI")
             {
                 states.Add(new USState()
                 {
@@ -433,7 +433,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("SOUTH CAROLINA") || text.Contains("SC"))
+            if (text == "SOUTH CAROLINA" || text == "SC")
             {
                 states.Add(new USState()
                 {
@@ -442,7 +442,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("SOUTH DAKOTA") || text.Contains("SD"))
+            if (text == "SOUTH DAKOTA" || text == "SD")
             {
                 states.Add(new USState()
                 {
@@ -451,7 +451,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("TENNESSEE") || text.Contains("TN"))
+            if (text == "TENNESSEE" || text == "TN")
             {
                 states.Add(new USState()
                 {
@@ -460,7 +460,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("TEXAS") || text.Contains("TX"))
+            if (text == "TEXAS" || text == "TX")
             {
                 states.Add(new USState()
                 {
@@ -469,7 +469,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("UTAH") || text.Contains("UT"))
+            if (text == "UTAH" || text == "UT")
             {
                 states.Add(new USState()
                 {
@@ -478,7 +478,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("VERMONT") || text.Contains("VT"))
+            if (text == "VERMONT" || text == "VT")
             {
                 states.Add(new USState()
                 {
@@ -487,7 +487,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("VIRGIN ISLANDS") || text.Contains("VI"))
+            if (text == "VIRGIN ISLANDS" || text == "VI")
             {
                 states.Add(new USState()
                 {
@@ -496,7 +496,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("VIRGINIA") || text.Contains("VA"))
+            if (text == "VIRGINIA" || text == "VA")
             {
                 states.Add(new USState()
                 {
@@ -505,7 +505,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("WASHINGTON") || text.Contains("WA"))
+            if (text == "WASHINGTON" || text == "WA")
             {
                 states.Add(new USState()
                 {
@@ -514,7 +514,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("WEST VIRGINIA") || text.Contains("WV"))
+            if (text == "WEST VIRGINIA" || text == "WV")
             {
                 states.Add(new USState()
                 {
@@ -523,7 +523,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("WISCONSIN") || text.Contains("WI"))
+            if (text == "WISCONSIN" || text == "WI")
             {
                 states.Add(new USState()
                 {
@@ -532,7 +532,7 @@ namespace CoreBackpack.Geo.US
                 });
             }
 
-            if (text.Contains("WYOMING") || text.Contains("WY"))
+            if (text == "WYOMING" || text == "WY")
             {
                 states.Add(new USState()
                 {
