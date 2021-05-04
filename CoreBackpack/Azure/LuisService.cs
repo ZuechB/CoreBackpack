@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace CoreBackpack.Services
-{
+namespace CoreBackpack.Azure
+{ 
     public interface ILuisService
     {
         Task<List<LuisService.LuisResponseModel>> Ask(string message, string luisAppId, string endpointKey, bool spellCheck = false, bool verbose = false, bool staging = false);

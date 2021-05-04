@@ -3,6 +3,8 @@ using CoreBackpack.Time;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
+using CoreBackpack.Notifications;
+using CoreBackpack.Geo;
 
 namespace Test
 {
@@ -23,9 +25,14 @@ namespace Test
             //}
 
 
-            var test = ConvertUSState.Search("Michigan");
+            //var test = ConvertUSState.Search("Michigan");
 
-            Console.WriteLine(test.First().Name);
+            //Console.WriteLine(test.First().Name);
+
+
+            var coord = new Coordinates();
+            var distance = coord.GetDistance(36.0230407714844, -78.9084014892578, 37.4191589355469, -122.075408935547);
+            Console.WriteLine(distance);
 
         }
     }

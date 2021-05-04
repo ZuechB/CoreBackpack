@@ -5,20 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreBackpack.Services
+namespace CoreBackpack.Mail
 {
-    public interface IMailService
+    public interface ISendGrid
     {
         Task<List<UserEmail>> Send(List<UserEmail> users, string templateId, BaseAccount substitutions);
         Task<UserEmail> Send(UserEmail user, string templateId, BaseAccount substitutions);
     }
-
-    public class MailService : IMailService
+    
+    public class SendGrid : ISendGrid
     {
         private string apiKey = "";
         private string fromEmail = "";
         private string fromName = "";
-        public MailService(string apiKey, string fromEmail, string fromName)
+        public SendGrid(string apiKey, string fromEmail, string fromName)
         {
             this.apiKey = apiKey;
             this.fromEmail = fromEmail;

@@ -1,100 +1,149 @@
-﻿using Microsoft.Azure.Storage;
-using Microsoft.Azure.Storage.Blob;
+﻿using Azure;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace CoreBackpack.Azure
 {
-    public class BlobStorage
+    public interface IBlobStorage
     {
-        public async Task DeleteBlob(string connectionString, string containerName, string fileName)
+        Task<BlobContentInfo> UploadBlob(string connectionString, string containerName, string blobName, Stream stream, bool overWrite = false, string newCacheControl = null, string contentType = null);
+        Task<BlobContentInfo> UploadBlob(string connectionString, string containerName, string blobName, string filePath, bool overWrite = false, string newCacheControl = null, string contentType = null);
+        Task<bool> DeleteBlob(string connectionString, string containerName, string blobName);
+        Task<Response> DownloadPrivateBlob(string connectionString, string containerName, string downloadFromPath, string downloadToPath);
+        Task<Response> DownloadPrivateBlob(string connectionString, string containerName, string downloadFromPath, Stream downloadToPath);
+        Task<Response> DownloadPublicBlob(string downloadFromPath, string downloadToPath);
+        Task<Response> DownloadPublicBlob(string downloadFromPath, Stream downloadToStream);
+
+        Task UpdateAllBlobsProperties(string connectionString, string containerName, string newCacheControl = "max-age=31536000", string contentType = "image/*", Action<int, string> CurrentBlobUpdated = null);
+    }
+
+    public class BlobStorage : IBlobStorage
+    {
+        public async Task<BlobContentInfo> UploadBlob(string connectionString, string containerName, string blobName, Stream stream, bool overWrite = false, string newCacheControl = null, string contentType = null)
         {
-            try
+            BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+
+            // Get a reference to a blob named "sample-file" in a container named "sample-container"
+            BlobClient blob = container.GetBlobClient(blobName);
+
+            // Upload local file
+            var responseBlob = await blob.UploadAsync(stream, overWrite);
+
+            await SetBlobPropertiesAsync(blob, newCacheControl, contentType);
+
+            return responseBlob;
+        }
+
+        public async Task<BlobContentInfo> UploadBlob(string connectionString, string containerName, string blobName, string filePath, bool overWrite = false, string newCacheControl = null, string contentType = null)
+        {
+            BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+            
+            // Get a reference to a blob named "sample-file" in a container named "sample-container"
+            BlobClient blob = container.GetBlobClient(blobName);
+
+            // Upload local file
+            var responseBlob = await blob.UploadAsync(filePath, overWrite);
+
+            await SetBlobPropertiesAsync(blob, newCacheControl, contentType);
+
+            return responseBlob;
+        }
+
+        public async Task<bool> DeleteBlob(string connectionString, string containerName, string blobName)
+        {
+            BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+            await container.CreateAsync();
+
+            // Get a reference to a blob named "sample-file" in a container named "sample-container"
+            BlobClient blob = container.GetBlobClient(blobName);
+
+            // Upload local file
+            return await blob.DeleteIfExistsAsync();
+        }
+
+        public async Task<Response> DownloadPrivateBlob(string connectionString, string containerName, string blobName, string downloadToPath)
+        {
+            BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+
+            // Get a reference to a blob named "sample-file" in a container named "sample-container"
+            BlobClient blob = container.GetBlobClient(blobName);
+
+            // Upload local file
+            return await blob.DownloadToAsync(downloadToPath);
+        }
+
+        public async Task<Response> DownloadPrivateBlob(string connectionString, string containerName, string blobName, Stream downloadToPath)
+        {
+            BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+
+            // Get a reference to a blob named "sample-file" in a container named "sample-container"
+            BlobClient blob = container.GetBlobClient(blobName);
+
+            // Upload local file
+            return await blob.DownloadToAsync(downloadToPath);
+        }
+
+        public async Task<Response> DownloadPublicBlob(string downloadFromPath, string downloadToPath)
+        {
+            return await new BlobClient(new Uri(downloadFromPath)).DownloadToAsync(downloadToPath);
+        }
+
+        public async Task<Response> DownloadPublicBlob(string downloadFromPath, Stream downloadToStream)
+        {
+            return await new BlobClient(new Uri(downloadFromPath)).DownloadToAsync(downloadToStream);
+        }
+
+        public async Task UpdateAllBlobsProperties(string connectionString, string containerName, string newCacheControl = "max-age=31536000", string contentType = "image/*", Action<int, string> CurrentBlobUpdated = null)
+        {
+            BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+
+            int index = 1;
+            var blobs = container.GetBlobs();
+            foreach (var blob in blobs)
             {
-                CloudStorageAccount storageAccount = null;
-                // Check whether the connection string can be parsed.
+                BlobClient blobClient = container.GetBlobClient(blob.Name);
+                await SetBlobPropertiesAsync(blobClient, newCacheControl, contentType);
 
-                if (CloudStorageAccount.TryParse(connectionString, out storageAccount))
+                if (CurrentBlobUpdated != null)
                 {
-                    CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
-
-                    CloudBlobContainer cloudBlobContainer = null;
-
-                    cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName);
-
-                    CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(fileName);
-                    
-                    await cloudBlockBlob.DeleteIfExistsAsync();
+                    CurrentBlobUpdated(index, blob.Name);
                 }
-                else
-                {
-                    // Otherwise, let the user know that they need to define the environment variable.
-                    Console.WriteLine(
-                        "A connection string has not been defined in the system environment variables. " +
-                        "Add a environment variable named 'storageconnectionstring' with your storage " +
-                        "connection string as a value.");
-                    Console.WriteLine("Press any key to exit the sample application.");
-                    Console.ReadLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+
+                index++;
             }
         }
 
-        public static string GetBlob(string connectionString, string containerName, string fileName)
+        public async Task SetBlobPropertiesAsync(BlobClient blob, string newCacheControl = null, string newContentType = null)
         {
-            string url = "";
-            CloudStorageAccount storageAccount = null;
+            var properties = await blob.GetPropertiesAsync();
 
-            // Check whether the connection string can be parsed.
-            if (CloudStorageAccount.TryParse(connectionString, out storageAccount))
+            BlobHttpHeaders headers = new BlobHttpHeaders
             {
-                CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
+                // Populate remaining headers with 
+                // the pre-existing properties
+                ContentType = properties.Value.ContentType,
+                ContentLanguage = properties.Value.ContentLanguage,
+                CacheControl = properties.Value.CacheControl,
+                ContentDisposition = properties.Value.ContentDisposition,
+                ContentEncoding = properties.Value.ContentEncoding,
+                ContentHash = properties.Value.ContentHash
+            };
 
-                CloudBlobContainer cloudBlobContainer = null;
-
-                cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName);
-
-                var blob = cloudBlobContainer.GetBlobReference(fileName);
-
-                url = blob.Uri.AbsoluteUri;
+            if (!String.IsNullOrWhiteSpace(newCacheControl))
+            {
+                headers.CacheControl = newCacheControl;
             }
 
-            return url;
-        }
-
-        public static async Task<string> UploadBlob(string connectionString, Stream file, string containerName, string fileName)
-        {
-            try
+            if (!String.IsNullOrWhiteSpace(newContentType))
             {
-                CloudStorageAccount storageAccount = null;
-
-                if (CloudStorageAccount.TryParse(connectionString, out storageAccount))
-                {
-                    CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
-
-                    CloudBlobContainer cloudBlobContainer = null;
-
-                    cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName);
-
-                    CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(fileName);
-
-                    await cloudBlockBlob.UploadFromStreamAsync(file);
-
-                    return cloudBlockBlob.Uri.AbsoluteUri;
-                }
-                else
-                {
-                    throw new Exception("A connection string has not been defined in the system environment variables.");
-                }
+                headers.ContentType = newContentType;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            // Set the blob's properties.
+            await blob.SetHttpHeadersAsync(headers);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CoreBackpack.cMath;
 using Stripe;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CoreBackpack.Services
@@ -45,6 +46,80 @@ namespace CoreBackpack.Services
             {
                 Source = cardToken
             });
+        }
+
+        public async Task PurchaseSubscription(string customerId, string paymentMethodId, List<string> PriceIds)
+        {
+            var subscriptionService = new SubscriptionService();
+
+            var items = new List<SubscriptionItemOptions>();
+
+            // this is the subscription
+            foreach (var priceId in PriceIds)
+            {
+                items.Add(new SubscriptionItemOptions
+                {
+                    Price = priceId,
+                });
+            }
+
+            var subscriptionOptions = new SubscriptionCreateOptions
+            {
+                Customer = customerId,
+                DefaultPaymentMethod = paymentMethodId,
+                Items = items
+            };
+
+            var paymentIntent = await subscriptionService.CreateAsync(subscriptionOptions);
+            if (paymentIntent.Status == "active")
+            {
+                // save to transaction table
+            }
+            else
+            {
+                //context.TransactionLineItems.Add(new TransactionLineItem()
+                //{
+                //    Plan = servicesGateway.Plans,
+                //    Amount = servicesGateway.Price,
+                //    TransactionId = transactionId,
+                //    Error = paymentIntent.Status,
+                //    Qty = 1,
+                //});
+                //await context.SaveChangesAsync();
+
+                //return new ChargedResult()
+                //{
+                //    IsSuccessful = false,
+                //    Error = paymentIntent.Status
+                //};
+            }
+        }
+
+        public async Task PurchaseProduct(string customerId, string paymentMethodId, decimal totalAmount)
+        {
+            var service = new PaymentIntentService();
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = MoneyExtender.ConvertToCents(totalAmount),
+                Currency = "usd",
+                PaymentMethodTypes = new List<string> { "card" },
+                Customer = customerId,
+                PaymentMethod = paymentMethodId,
+                Confirm = true,
+                OffSession = true,
+            };
+            var paymentIntent = await service.CreateAsync(options);
+            if (paymentIntent != null)
+            {
+                if (paymentIntent.Status == "succeeded")
+                {
+
+                }
+                else
+                {
+
+                }
+            }
         }
 
         public async Task<Invoice> CreateInvoice(string customerId, decimal amount, string description = "", string currency = "usd", bool autoCharge = false)

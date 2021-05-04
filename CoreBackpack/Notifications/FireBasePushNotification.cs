@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CoreBackpack.Notifications
 {
-    public class FireBasePushNotification
+    public static class FireBasePushNotification
     {
         public static async Task<HttpResponseMessage> Send(PushNotification notification)
         {
