@@ -55,7 +55,6 @@ namespace CoreBackpack.Azure
         public async Task<bool> DeleteBlob(string connectionString, string containerName, string blobName)
         {
             BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
-            await container.CreateAsync();
 
             // Get a reference to a blob named "sample-file" in a container named "sample-container"
             BlobClient blob = container.GetBlobClient(blobName);
