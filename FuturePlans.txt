@@ -1,0 +1,24 @@
+Google
+- Add the ability to upload data easily
+
+
+URL
+- Able to parse out filename from URL if exists, otherwise return null or new GUID
+- Get BaseURL
+- 
+
+
+Zip
+- Unzip files from Uri
+- Unzip mult
+
+
+Azure
+- Simple url to blob upload with converting
+- Simple url to blob upload
+- Restart Webapp
+- Stop Webapp
+- Start Webapp
+- Apply subdomain certificate to webapp
+- Add DNS record to webapp
+- Bind certificate to Webapp
