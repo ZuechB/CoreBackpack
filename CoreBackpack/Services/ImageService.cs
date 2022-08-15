@@ -8,10 +8,41 @@ namespace CoreBackpack.Services
     public interface IImageService
     {
         Stream ConvertPhoto(IFormFile file, MagickFormat format, ImageSize size = null);
+        Stream ConvertPhoto(Stream file, MagickFormat format, ImageSize size = null);
     }
 
     public class ImageService : IImageService
     {
+        public Stream ConvertPhoto(Stream file, MagickFormat format, ImageSize size = null)
+        {
+            file.Seek(0, SeekOrigin.Begin);
+
+            byte[] fileBytes = null;
+            using (var ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                fileBytes = ms.ToArray();
+            }
+
+            var memStream = new MemoryStream();
+            {
+                using (MagickImage image = new MagickImage(fileBytes))
+                {
+                    image.Format = format;
+
+                    if (size != null)
+                    {
+                        image.Resize(size.width, size.height);
+                    }
+
+                    image.Write(memStream);
+                }
+            }
+
+            return memStream;
+        }
+
+
         public Stream ConvertPhoto(IFormFile file, MagickFormat format, ImageSize size = null)
         {
             byte[] fileBytes = null;
@@ -26,7 +57,7 @@ namespace CoreBackpack.Services
                 using (MagickImage image = new MagickImage(fileBytes))
                 {
                     image.Format = format;
-                    
+
                     if (size != null)
                     {
                         image.Resize(size.width, size.height);

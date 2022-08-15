@@ -11,7 +11,7 @@ namespace CoreBackpack.Images
         {
             var wc = new WebClient();
             var data = await wc.DownloadDataTaskAsync(url);
-            
+
             var memStream = new MemoryStream(data);
             memStream.Seek(0, SeekOrigin.Begin);
 

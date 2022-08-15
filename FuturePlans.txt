@@ -1,6 +1,9 @@
 Google
 - Add the ability to upload data easily
 
+Microsoft Graph
+- Read Excel files
+
 
 URL
 - Able to parse out filename from URL if exists, otherwise return null or new GUID
