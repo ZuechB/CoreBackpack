@@ -5,7 +5,7 @@
     <Authors>ZuechB</Authors>
     <Description>in development library of reusable methods and properties</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.36</Version>
+    <Version>1.0.38</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,19 +22,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
-    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.57.0.2727" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="12.0.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.15.0" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.60.0.2979" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.4" />
     <PackageReference Include="Sendgrid" Version="9.28.1" />
     <PackageReference Include="SlackBotMessages" Version="2.1.0" />
-    <PackageReference Include="Stripe.net" Version="40.2.0" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-    <PackageReference Include="TimeZoneConverter" Version="5.0.0" />
+    <PackageReference Include="Stripe.net" Version="41.10.0" />
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    <PackageReference Include="TimeZoneConverter" Version="6.1.0" />
   </ItemGroup>
 
 </Project>
