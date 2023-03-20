@@ -150,7 +150,14 @@ namespace CoreBackpack.Time
             return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
         }
 
-        public static List<MonthFrame> GetMonthsFromToday(int months, bool includeThisMonth = true)
+        /// <summary>
+        /// Get a list of months
+        /// </summary>
+        /// <param name="months">Total Amount of momths you want to collect</param>
+        /// <param name="includeThisMonth">Will include this month</param>
+        /// <param name="IsPast">If true will count months going backwards, if true count months forward</param>
+        /// <returns></returns>
+        public static List<MonthFrame> GetMonthsFromToday(int months, bool includeThisMonth = true, bool IsPast = true)
         {
             var monthFrames = new List<MonthFrame>();
 
@@ -167,7 +174,15 @@ namespace CoreBackpack.Time
 
             for (int i = 0; i < months; i++)
             {
-                var month = SystemTime.Now.AddMonths(-(i + 1));
+                DateTimeOffset month;
+                if (IsPast)
+                {
+                    month = SystemTime.Now.AddMonths(-(i + 1));
+                }
+                else
+                {
+                    month = SystemTime.Now.AddMonths((i + 1));
+                }
 
                 monthFrames.Add(new MonthFrame()
                 {
