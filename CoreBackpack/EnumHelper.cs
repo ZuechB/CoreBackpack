@@ -18,5 +18,28 @@ namespace CoreBackpack
             var customAttribute = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return customAttribute.Length > 0 ? ((DescriptionAttribute)customAttribute[0]).Description : name;
         }
+
+        public static T GetEnumValueFromDescription<T>(string description)
+        {
+            Type enumType = typeof(T);
+
+            if (!enumType.IsEnum)
+                throw new ArgumentException($"{enumType.Name} is not an enum.");
+
+            foreach (T enumValue in Enum.GetValues(enumType))
+            {
+                if (enumValue.ToString() == description)
+                    return enumValue;
+
+                FieldInfo field = enumType.GetField(enumValue.ToString());
+                if (field != null && Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
+                {
+                    if (attribute.Description == description)
+                        return enumValue;
+                }
+            }
+
+            throw new ArgumentException($"No enum value with the description '{description}' found in {enumType.Name}.");
+        }
     }
 }
