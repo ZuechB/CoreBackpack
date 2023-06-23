@@ -1,14 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
-    <Version>1.0.38</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackAsTool>True</PackAsTool>
+    <IsPackable>True</IsPackable>
     <Title>CoreBackpack</Title>
+    <Version>1.0.40</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Collections\**" />
+    <Compile Remove="Image\**" />
+    <EmbeddedResource Remove="Collections\**" />
+    <EmbeddedResource Remove="Image\**" />
+    <None Remove="Collections\**" />
+    <None Remove="Image\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.16.0" />
@@ -18,7 +29,9 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.8" />
-    <PackageReference Include="SendGrid" Version="9.28.1" />
+    <PackageReference Include="Sendgrid" Version="9.28.1" />
+    <PackageReference Include="SlackBotMessages" Version="2.1.0" />
+    <PackageReference Include="Stripe.net" Version="41.21.0" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
     <PackageReference Include="TimeZoneConverter" Version="6.1.0" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoreBackpack.General
+namespace CoreBackpack
 {
     public static class NullableParse
     {
@@ -29,6 +29,13 @@ namespace CoreBackpack.General
         {
             decimal i;
             if (Decimal.TryParse(s, out i)) return i;
+            return null;
+        }
+
+        public static bool? ToNullableBool(this string s)
+        {
+            bool i;
+            if (Boolean.TryParse(s, out i)) return i;
             return null;
         }
     }
