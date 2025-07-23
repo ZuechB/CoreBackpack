@@ -2,7 +2,7 @@
 {
     public class ImageSize
     {
-        public int width { get; set; }
-        public int height { get; set; }
+        public uint width { get; set; }
+        public uint height { get; set; }
     }
 }

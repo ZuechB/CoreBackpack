@@ -7,7 +7,7 @@ namespace CoreBackpack.Images
 {
     public class ImageConvert
     {
-        public async Task<MemoryStream> ExecuteFromURL(string url, int width, int height)
+        public async Task<MemoryStream> ExecuteFromURL(string url, uint width, uint height)
         {
             var wc = new WebClient();
             var data = await wc.DownloadDataTaskAsync(url);
@@ -18,7 +18,7 @@ namespace CoreBackpack.Images
             return Execute(memStream, width, height);
         }
 
-        public MemoryStream Execute(Stream stream, int width, int height)
+        public MemoryStream Execute(Stream stream, uint width, uint height)
         {
             bool isCMYK = false;
             using (MagickImage image = new MagickImage(stream))
